@@ -5,21 +5,25 @@ import {
     Text
 } from "react-native";
 
+import { Button } from "./elements";
+import config from "../config";
+
+
+
 export default function CreateNewRoom () {
+    const colors = config.colors;
     const handleCreateNewRoom = () => {
         console.log("creating new room")
     }
     return (
         <View style={styles.container}>
-            <TouchableOpacity
-                style={styles.button}
-                onPress={handleCreateNewRoom}
-            >
-                <Text style={styles.buttonText}>Create new room</Text>
-            </TouchableOpacity>
-
+            <Button 
+                label="Create new room"
+                action={handleCreateNewRoom}
+                backgroundColor={colors.orange}
+                textColor={colors.dark}
+            />
         </View>
-
     )
 }
 
@@ -29,16 +33,4 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         width: "100%"
     },
-    button: {
-        height: 50,
-        backgroundColor: "red",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius: 50,
-    },
-    buttonText: {
-        color: "white",
-    },
-
 })

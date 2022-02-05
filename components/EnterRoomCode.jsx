@@ -3,13 +3,17 @@ import {
     View,
     TextInput,
     Text,
-    Button
 } from "react-native";
 
+import { Button } from "./elements";
+import config from "../config";
+
 export default function EnterRoomCode() {
+    const colors = config.colors;
     const handleSubmit = () => {
         console.log("submit form")
-    }
+    };
+    console.log(typeof colors.blue)
     return (
         <View style={styles.container}>
             <Text style={styles.text}>
@@ -19,10 +23,11 @@ export default function EnterRoomCode() {
                 placeholder="A1B2C3"
                 style={styles.textInputStyle}
             />
-            <Button
-                title="Ok"
-                onPress={handleSubmit}
-                color="blue"
+            <Button 
+                label="Ok"
+                action={handleSubmit}
+                backgroundColor={colors.blue}
+                textColor={colors.dark}
             />
         </View>
     )

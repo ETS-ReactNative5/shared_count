@@ -10,7 +10,10 @@ import config from "../config"
 export default function CountButton ({increaseCount}) {
     return (
         <View style={styles.container} >
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity 
+                style={styles.button}
+                onPress={increaseCount}
+            >
                 <Text style={styles.text}>
                     +
                 </Text>
@@ -36,6 +39,8 @@ const styles = StyleSheet.create({
         backgroundColor: colors.blue,
         color: colors.dark,
         borderRadius: 200,
+        shadowColor: "black",
+        elevation: 10
     },
     text: {
         fontSize: 60

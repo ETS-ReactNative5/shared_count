@@ -63,7 +63,11 @@ export default function Menu({exitAction, shareAction}) {
             <Button 
                 icon={
                     <Image 
-                        source={require("../assets/icons/002-dots.png" )}
+                        source={
+                            openMenu ?
+                            require("../assets/icons/close.png") :
+                            require("../assets/icons/002-dots.png" )
+                        }
                         style={styles.icon}
                     />
                 }
@@ -90,6 +94,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         marginVertical: 10,
+        elevation: 5,
+        shadowColor: "black"
     },
     icon: {
         height: 25,

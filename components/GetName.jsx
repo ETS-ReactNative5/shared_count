@@ -11,7 +11,7 @@ import {
 
 import config from "../config";
 
-export default function GetName ({setName, closePrompt, enterRoom}) {
+export default function GetName ({setName, closePrompt, enter}) {
 
     const [userName, setUserName] = useState("");
     const submit = () => {
@@ -23,7 +23,7 @@ export default function GetName ({setName, closePrompt, enterRoom}) {
 			return
 		}
         setName(userName);
-        enterRoom();
+        enter();
     }
 
     return (
@@ -41,16 +41,16 @@ export default function GetName ({setName, closePrompt, enterRoom}) {
                     style={styles.input}
                 />
                 <View style={styles.buttons}>
-                    <Button 
+                    <View style={styles.button}><Button 
                         onPress={closePrompt}
                         title="Cancel"
                         color={config.colors.orange}
-                    />
-                    <Button 
+                    /></View>
+                    <View style={styles.button}><Button 
                         onPress={submit}
                         title="Ok"
                         color={config.colors.blue}
-                    />
+                    /></View>
 
                 </View>
             </View>
@@ -66,12 +66,10 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: 0,
         right: 0,
-        zIndex: 10,
-        // backgroundColor: colors.gray,
-        // opacity: 0.7,
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        elevation: 20
     },
     window: {
         width: "80%",
@@ -80,12 +78,13 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         minHeight: 200,
         backgroundColor: "white",
-        borderRadius: 20
+        borderRadius: 20,
+        shadowColor: "black",
+        elevation: 30
     },
     title: {
         paddingHorizontal: 30,
         paddingVertical: 10,
-
         fontSize: 30
     },
     message: {
@@ -101,9 +100,14 @@ const styles = StyleSheet.create({
     buttons: {
         width: "100%",
         paddingHorizontal: 20,
-        // display: "flex",
-        // flexDirection: "row",
-        // alignItems: "center",
-        // justifyContent: "space-around",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-around",
+    },
+    button: {
+        width: "50%",
+        marginVertical: 15,
+
     }
 })

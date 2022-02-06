@@ -11,16 +11,20 @@ import { useState } from "react";
 import { Button } from "./elements";
 import config from "../config";
 
-export default function EnterRoomCode({enterRoom}) {
+export default function EnterRoomCode({getName, setRoomId}) {
     const colors = config.colors;
-    const [roomId, setRoomId] = useState("");
+    const [Id, setId] = useState("");
 
     const handleSubmit = () => {
-        if(roomId === ""){Alert.alert(
-            "Missing room name.",
-            "Please enter a room name."
-        )}
-        enterRoom(roomId)
+        if(Id === ""){
+            Alert.alert(
+                "Missing room name.",
+                "Please enter a room name."
+            )
+            return 
+        }
+        setRoomId(Id);
+        getName();
     };
 
     return (
@@ -31,7 +35,7 @@ export default function EnterRoomCode({enterRoom}) {
             <TextInput
                 placeholder="A1B2C3"
                 style={styles.textInputStyle}
-                onChangeText={setRoomId}
+                onChangeText={setId}
             />
             <Button 
                 label="Ok"

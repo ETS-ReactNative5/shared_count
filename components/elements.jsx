@@ -12,7 +12,9 @@ function Button ({ label, action, backgroundColor, textColor}) {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            borderRadius: 50
+            borderRadius: 50,
+            shadowColor: "black",
+            elevation: 8,
         },
         text: {
             color: textColor

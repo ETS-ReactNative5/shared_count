@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { 
     StyleSheet,
 	SafeAreaView,
-	View,
 	StatusBar,
 } from 'react-native';
 
@@ -26,15 +25,19 @@ export default function App() {
 		setPage(1)
 	}
 
+	const createRoom = () => {
+		console.log("creating room")
+		return "A1B2C3"
+	}
+
 	const exitRoom = () => {
 		console.log("Exiting room")
 		setPage(0);
 	}
 
 	const pages = [
-		<EnterRoomPage enterRoom={enterRoom}/>,
+		<EnterRoomPage enterRoom={enterRoom} createRoom={createRoom}/>,
 		<RoomPage exitRoom={exitRoom}/>,
-
 	]
 
   	return (

@@ -6,13 +6,14 @@ import {
 import { Button } from "./elements";
 import config from "../config";
 
-export default function CreateNewRoom ({enterRoom}) {
+export default function CreateNewRoom ({getName, setRoomId, createRoom}) {
     const colors = config.colors;
     const handleCreateNewRoom = () => {
-        // dummy room id; to be api call
-        const roomId = "A1B2C3"
-        enterRoom(roomId);
-    }
+        setRoomId(
+            createRoom()
+        )
+        getName();
+    };
     return (
         <View style={styles.container}>
             <Button 

@@ -1,14 +1,10 @@
 import { 
     StyleSheet,
     View,
-    Text,
     Image
 } from "react-native";
 
 import config from "../config";
-
-import icon from "../assets/icon.png";
-import logoLight from "../assets/logo_light.png";
 
 export default function TitleBar() {
     return (

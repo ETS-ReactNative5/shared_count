@@ -1,10 +1,6 @@
-
-import { useState } from 'react';
 import { 
     StyleSheet,
-	SafeAreaView,
 	View,
-	StatusBar,
 } from 'react-native';
 
 import {
@@ -13,7 +9,7 @@ import {
 	CountButton,
 	PlayerList,
 	Menu,
-} from "./components";
+} from "../components";
 
 export default function RoomPage ({exitRoom}) {
 	return(

@@ -3,17 +3,26 @@ import {
     View,
     TextInput,
     Text,
+    Alert,
 } from "react-native";
+
+import { useState } from "react";
 
 import { Button } from "./elements";
 import config from "../config";
 
-export default function EnterRoomCode() {
+export default function EnterRoomCode({enterRoom}) {
     const colors = config.colors;
+    const [roomId, setRoomId] = useState("");
+
     const handleSubmit = () => {
-        console.log("submit form")
+        if(roomId === ""){Alert.alert(
+            "Missing room name.",
+            "Please enter a room name."
+        )}
+        enterRoom(roomId)
     };
-    console.log(typeof colors.blue)
+
     return (
         <View style={styles.container}>
             <Text style={styles.text}>
@@ -22,6 +31,7 @@ export default function EnterRoomCode() {
             <TextInput
                 placeholder="A1B2C3"
                 style={styles.textInputStyle}
+                onChangeText={setRoomId}
             />
             <Button 
                 label="Ok"

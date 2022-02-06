@@ -1,19 +1,17 @@
 import {
     View,
-    TouchableOpacity,
     StyleSheet,
-    Text
 } from "react-native";
 
 import { Button } from "./elements";
 import config from "../config";
 
-
-
-export default function CreateNewRoom () {
+export default function CreateNewRoom ({enterRoom}) {
     const colors = config.colors;
     const handleCreateNewRoom = () => {
-        console.log("creating new room")
+        // dummy room id; to be api call
+        const roomId = "A1B2C3"
+        enterRoom(roomId);
     }
     return (
         <View style={styles.container}>

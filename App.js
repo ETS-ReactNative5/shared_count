@@ -3,46 +3,23 @@ import {
     StyleSheet,
 	SafeAreaView,
 	View,
-	StatusBar
+	StatusBar,
 } from 'react-native';
 
 import {
 	TitleBar,
-	EnterRoomCode,
-	CreateNewRoom,
-	ShowRoom,
-	Counter,
-	CountButton,
-	PlayerList,
-	Menu,
 } from "./components";
+
+import {
+	RoomPage,
+	EnterRoomPage
+} from "./pages"
 
 
 import config from './config';
-function Page1 ({enterRoom}) {
-	
-	return(
-		<View style={styles.page1}>
-			<EnterRoomCode enterRoom={enterRoom}/>
-			<CreateNewRoom enterRoom={enterRoom}/>
-		</View>
-	)
-}
-
-function Page2 ({exitRoom}) {
-	return(
-		<View style={styles.page2}>
-			<ShowRoom roomCode="A1B2C3" />
-			<Counter count={39} />
-			<CountButton increaseCount={() => console.log("increasing count")} />
-			<PlayerList />
-			<Menu exitAction={exitRoom} shareAction={() => console.log("sharing")}/>
-		</View>
-	)
-}
 
 export default function App() {
-	const [page, setPage] = useState(1);
+	const [page, setPage] = useState(0);
 
 	const enterRoom = (roomId) => {
 		console.log(`entering room ${roomId}`)
@@ -55,8 +32,9 @@ export default function App() {
 	}
 
 	const pages = [
-		<Page1 enterRoom={enterRoom}/>,
-		<Page2 exitRoom={exitRoom}/>,
+		<EnterRoomPage enterRoom={enterRoom}/>,
+		<RoomPage exitRoom={exitRoom}/>,
+
 	]
 
   	return (
@@ -77,16 +55,4 @@ const styles = StyleSheet.create({
 	AndroidSafeArea: {
 	    // paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
 	},
-	page1: {
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "flex-start",
-		justifyContent: "space-around",
-		width: "100%",
-
-	},
-	page2: {
-		height: "90%"
-	}
-
 });

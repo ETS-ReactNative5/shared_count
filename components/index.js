@@ -7,6 +7,8 @@ import CountButton from "./CountButton";
 import PlayerList from "./PlayerList";
 import Menu from "./Menu";
 
+import GetName from "./GetName";
+
 
 export {
     TitleBar,
@@ -17,5 +19,6 @@ export {
     CountButton,
     PlayerList,
     Menu,
+    GetName,
 
 }

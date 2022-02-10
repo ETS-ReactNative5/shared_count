@@ -4,6 +4,7 @@ import postName from "./postName";
 import increaseCount from "./increaseCount";
 import exitRoom from "./exitRoom";
 import shareRoom from "./shareRoom";
+import setupSocket from "./setupSocket";
 
 export {
     createRoom,
@@ -11,5 +12,6 @@ export {
     postName,
     increaseCount,
     exitRoom,
-    shareRoom
+    shareRoom,
+    setupSocket
 }

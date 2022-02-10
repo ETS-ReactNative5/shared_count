@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { 
     StyleSheet,
 	View,
@@ -15,7 +15,8 @@ import {
 import { 
 	increaseCount,
 	exitRoom,
-	shareRoom
+	shareRoom,
+	setupSocket
 } from '../models';
 
 export default function RoomPage ({exitRoomPage, webSocket, roomId}) {
@@ -26,11 +27,14 @@ export default function RoomPage ({exitRoomPage, webSocket, roomId}) {
 		exitRoomPage()
 	}
 	const count = () => {
-		increaseCount(webSocket, setCounter)
+		setCounter(counter + 1)
+		increaseCount(webSocket, count)
 	}
 	const share = () => {
 		shareRoom(roomId);
 	}
+
+	useEffect(() => setupSocket(webSocket, setCounter), [roomId])
 
 	return(
 		<View style={styles.page}>

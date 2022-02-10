@@ -28,7 +28,7 @@ export default function EnterRoomPage ({goToRoomPage, setWebSocket, setRoomId, r
 	const enter = (userName) => {
 		postName(roomId, userName)
 		goToRoomPage();
-		enterRoom(roomId, setWebSocket);
+		enterRoom(config.webSocketEndpoint, roomId, setWebSocket);
 	}
 
 	return(

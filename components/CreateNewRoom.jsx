@@ -9,9 +9,7 @@ import config from "../config";
 export default function CreateNewRoom ({getName, setRoomId, createRoom}) {
     const colors = config.colors;
     const handleCreateNewRoom = () => {
-        setRoomId(
-            createRoom()
-        )
+        createRoom()
         getName();
     };
     return (

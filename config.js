@@ -5,5 +5,6 @@ export default {
         gray: "#e7e7e7",
         blue: "#45c3ff",
         orange: "#ffaa45",
-    }
+    },
+    apiEndpoint: "http://3.13.147.30/counter"
 }

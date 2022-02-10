@@ -14,30 +14,20 @@ import {
 	EnterRoomPage
 } from "./pages"
 
-
 import config from './config';
 
 export default function App() {
+	// shadows not working on ios
 	const [page, setPage] = useState(0);
+	const [webSocket, setWebSocket] = useState();
+	const [roomId, setRoomId] = useState("");
 
-	const enterRoom = (roomId) => {
-		console.log(`entering room ${roomId}`)
-		setPage(1)
-	}
-
-	const createRoom = () => {
-		console.log("creating room")
-		return "A1B2C3"
-	}
-
-	const exitRoom = () => {
-		console.log("Exiting room")
-		setPage(0);
-	}
+	const goToRoomPage = () => setPage(1);
+	const exitRoom = () => setPage(0);
 
 	const pages = [
-		<EnterRoomPage enterRoom={enterRoom} createRoom={createRoom}/>,
-		<RoomPage exitRoom={exitRoom}/>,
+		<EnterRoomPage goToRoomPage={goToRoomPage} setWebSocket={setWebSocket} setRoomId={setRoomId} roomId={roomId}/>,
+		<RoomPage exitRoomPage={exitRoom} webSocket={webSocket} roomId={roomId}/>,
 	]
 
   	return (

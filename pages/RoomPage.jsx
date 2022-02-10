@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { 
     StyleSheet,
 	View,
@@ -11,14 +12,36 @@ import {
 	Menu,
 } from "../components";
 
-export default function RoomPage ({exitRoom}) {
+import { 
+	increaseCount,
+	exitRoom,
+	shareRoom
+} from '../models';
+
+export default function RoomPage ({exitRoomPage, webSocket, roomId}) {
+	const [counter, setCounter] = useState(0);
+	const exitAction = () => {
+		console.log("disconnect from websocket")
+		exitRoom(webSocket)
+		exitRoomPage()
+	}
+	const count = () => {
+		increaseCount(webSocket, setCounter)
+	}
+	const share = () => {
+		shareRoom(roomId);
+	}
+
 	return(
 		<View style={styles.page}>
-			<ShowRoom roomCode="A1B2C3" />
-			<Counter count={39} />
-			<CountButton increaseCount={() => console.log("increasing count")} />
+			<ShowRoom roomCode={roomId}/>
+			<Counter count={counter} />
+			<CountButton increaseCount={count} />
 			<PlayerList />
-			<Menu exitAction={exitRoom} shareAction={() => console.log("sharing")}/>
+			<Menu 
+				exitAction={exitAction}
+				shareAction={share}
+			/>
 		</View>
 	)
 }

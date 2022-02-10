@@ -3,7 +3,8 @@ import {
     StyleSheet,
     View,
     TouchableOpacity,
-    Image
+    Image,
+    Alert
 } from "react-native";
 
 
@@ -26,9 +27,25 @@ export default function Menu({exitAction, shareAction}) {
     const [openMenu, setOpenMenu] = useState(false)
     const toggleMenu = () => setOpenMenu(!openMenu)
     const exit = () => {
-        setOpenMenu(false);
-        exitAction();
+        Alert.alert(
+            "Exiting room.",
+            "Are you sure you want to exit the room you're in?",
+            [
+                {
+                    text: "Cancel",
+                    onPress: () => {}
+                },
+                {
+                    text: "Ok",
+                    onPress: () => {
+                        setOpenMenu(false);
+                        exitAction();
+                    }
+                }
+            ]
+        )
     }
+    
     const share = () => {
         setOpenMenu(false);
         shareAction();

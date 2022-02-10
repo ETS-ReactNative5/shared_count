@@ -11,7 +11,7 @@ import {
 
 import config from "../config";
 
-export default function GetName ({setName, closePrompt, enter}) {
+export default function GetName ({name, closePrompt, enter}) {
 
     const [userName, setUserName] = useState("");
     const submit = () => {
@@ -22,8 +22,7 @@ export default function GetName ({setName, closePrompt, enter}) {
 			);
 			return
 		}
-        setName(userName);
-        enter();
+        enter(userName);
     }
 
     return (

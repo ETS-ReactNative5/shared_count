@@ -6,5 +6,6 @@ export default {
         blue: "#45c3ff",
         orange: "#ffaa45",
     },
-    apiEndpoint: "http://3.13.147.30/counter"
+    apiEndpoint: "http://3.13.147.30/counter",
+    webSocketEndpoint: "ws://3.13.147.30/ws/counter"
 }

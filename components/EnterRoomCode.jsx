@@ -11,15 +11,22 @@ import { useState } from "react";
 import { Button } from "./elements";
 import config from "../config";
 
+
+const verifyRoomId = (roomId) => !(
+    roomId === "" ||
+    roomId.length !== 6 ||
+    roomId.match(/^[0-9a-z]+$/) 
+)
+
 export default function EnterRoomCode({getName, setRoomId}) {
     const colors = config.colors;
     const [Id, setId] = useState("");
 
     const handleSubmit = () => {
-        if(Id === ""){
+        if(!verifyRoomId(Id)){
             Alert.alert(
-                "Missing room name.",
-                "Please enter a room name."
+                "Room name invalid.",
+                "Please enter a valid room name."
             )
             return 
         }

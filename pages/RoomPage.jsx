@@ -41,7 +41,7 @@ export default function RoomPage ({exitRoomPage, webSocket, roomId}) {
 			<ShowRoom roomCode={roomId}/>
 			<Counter count={counter} />
 			<CountButton increaseCount={count} />
-			<PlayerList />
+			{/* <PlayerList /> */}
 			<Menu 
 				exitAction={exitAction}
 				shareAction={share}

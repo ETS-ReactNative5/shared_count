@@ -40,7 +40,11 @@ const styles = StyleSheet.create({
         color: colors.dark,
         borderRadius: 200,
         shadowColor: "black",
-        elevation: 10
+        elevation: 10,
+        shadowOffset: {
+            height: -10,
+            width: 10
+        }
     },
     text: {
         fontSize: 60

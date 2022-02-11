@@ -15,6 +15,10 @@ function Button ({ label, action, backgroundColor, textColor}) {
             borderRadius: 50,
             shadowColor: "black",
             elevation: 8,
+            shadowOffset: {
+                height: -10,
+                width: 10
+            }
         },
         text: {
             color: textColor

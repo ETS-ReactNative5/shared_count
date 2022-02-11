@@ -1,3 +1,6 @@
+// to publish run expo publish
+// to start run npm start or expo start
+
 import { useState } from 'react';
 import { 
     StyleSheet,

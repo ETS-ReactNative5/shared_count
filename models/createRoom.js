@@ -1,4 +1,4 @@
-export default function createRoom(endpoint, setRoomId) {
+export default function createRoom(endpoint, setRoomId, setInitialCount) {
     const url = endpoint + "/createroom";
 
     console.log(`creating room on endpoint ${url}/`)
@@ -7,8 +7,8 @@ export default function createRoom(endpoint, setRoomId) {
     .then( resp => resp.json() )
     .then( data => {
         console.log(data)
-        const link = data.result.link
-        setRoomId(link.slice(link.length - 6))
+        setRoomId(data.result.room_name)
+        setInitialCount(data.result.counter_total)
     })
     .catch( e  => {
         console.log("An error ocurred when creating a room: ", e)

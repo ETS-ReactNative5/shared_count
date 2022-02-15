@@ -5,7 +5,8 @@ import {
     Text,
     TextInput,
     Button,
-    Alert
+    Alert,
+    KeyboardAvoidingView
 } from "react-native";
 
 
@@ -26,7 +27,10 @@ export default function GetName ({name, closePrompt, enter}) {
     }
 
     return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView 
+            style={styles.container}
+            behavior="padding"
+        >
             <View style={styles.window}>
                 <Text style={styles.title}>
                     Enter a name:
@@ -53,7 +57,7 @@ export default function GetName ({name, closePrompt, enter}) {
 
                 </View>
             </View>
-        </View>
+        </KeyboardAvoidingView>
     )
 }
 

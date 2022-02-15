@@ -42,9 +42,10 @@ const styles = StyleSheet.create({
         shadowColor: "black",
         elevation: 10,
         shadowOffset: {
-            height: -10,
-            width: 10
-        }
+            height: 5,
+            width: 5
+        },
+        shadowOpacity: 0.3
     },
     text: {
         fontSize: 60

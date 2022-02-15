@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { 
 	View,
     StyleSheet
@@ -13,22 +13,20 @@ import {
 import {
 	createRoom,
 	enterRoom,
-	postName
 } from "../models"
 
 import config from '../config';
 
-export default function EnterRoomPage ({goToRoomPage, setWebSocket, setRoomId, roomId}) {
+export default function EnterRoomPage ({goToRoomPage, setInitialCount, setWebSocket, setRoomId, roomId}) {
 	const [showPrompt, setShowPrompt] = useState(false);
 	const closePrompt = () => setShowPrompt(false);
 	const openPrompt = () => setShowPrompt(true);
 
-	const createRoomId = () => createRoom(config.apiEndpoint, setRoomId)
+	const createRoomId = () => createRoom(config.apiEndpoint, setRoomId, setInitialCount)
 
 	const enter = (userName) => {
-		postName(roomId, userName)
 		goToRoomPage();
-		enterRoom(config.webSocketEndpoint, roomId, setWebSocket);
+		enterRoom(config.webSocketEndpoint, config.apiEndpoint, roomId, userName, setWebSocket, setInitialCount);
 	}
 
 	return(

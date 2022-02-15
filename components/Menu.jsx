@@ -112,6 +112,11 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginVertical: 10,
         elevation: 5,
+        shadowOffset: {
+            height: 5,
+            width: 5,
+        },
+        shadowOpacity: 0.3,
         shadowColor: "black"
     },
     icon: {

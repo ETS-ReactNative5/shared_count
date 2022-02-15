@@ -19,27 +19,8 @@ function Player ({playerName}) {
     )
 }
 
-export default function PlayerList () {
-    let players = [
-        "John", "Josh", "João",
-        "John", "Josh", "João",
-        "John", "Josh", "João",
-        "John", "Josh", "João",
-        "John", "Josh", "João",
-        "John", "Josh", "João",
-        "John", "Josh", "João",
-        "John", "Josh", "João",
-        "John", "Josh", "João",
-        "John", "Josh", "João",
-        "John", "Josh", "João",
-        "John", "Josh", "João",
-        "John", "Josh", "João",
-        "John", "Josh", "João",
-    ];
+export default function PlayerList ({players}) {
     players = players.map( (name, index) => ({id: index, name: name}))
-    const renderItem = ({item}) => (
-        <Player playerName={item.name} />
-    )
 
     return (
         <View style={styles.container}>

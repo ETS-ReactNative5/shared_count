@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { 
     StyleSheet,
 	SafeAreaView,
+	View,
 	StatusBar,
 } from 'react-native';
 
@@ -24,29 +25,34 @@ export default function App() {
 	const [page, setPage] = useState(0);
 	const [webSocket, setWebSocket] = useState();
 	const [roomId, setRoomId] = useState("");
+	const [initialCount, setInitialCount] = useState();
 
 	const goToRoomPage = () => setPage(1);
 	const exitRoom = () => setPage(0);
 
 	const pages = [
-		<EnterRoomPage goToRoomPage={goToRoomPage} setWebSocket={setWebSocket} setRoomId={setRoomId} roomId={roomId}/>,
-		<RoomPage exitRoomPage={exitRoom} webSocket={webSocket} roomId={roomId}/>,
+		<EnterRoomPage goToRoomPage={goToRoomPage} setInitialCount={setInitialCount} setWebSocket={setWebSocket} setRoomId={setRoomId} roomId={roomId}/>,
+		<RoomPage exitRoomPage={exitRoom} webSocket={webSocket} initialCount={initialCount} roomId={roomId}/>,
 	]
 
   	return (
-    	<SafeAreaView style={[styles.container, styles.AndroidSafeArea]}>
-			<TitleBar />
-			{pages[page]}
-    	  	<StatusBar style="auto" />
+    	<SafeAreaView style={[styles.outside, styles.AndroidSafeArea]}>
+			<View style={styles.container}>
+				<TitleBar />
+				{pages[page]}
+	    	  	<StatusBar style="auto" />
+			</View>
     	</SafeAreaView>
   	);
 }
 
 const colors = config.colors
 const styles = StyleSheet.create({
-  	container: {
+	outside: {
     	backgroundColor: colors.light,
-		minHeight: "100%"
+		minHeight: "100%",
+	},
+  	container: {
   	},
 	AndroidSafeArea: {
 	    // paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0

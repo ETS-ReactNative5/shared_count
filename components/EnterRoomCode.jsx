@@ -6,7 +6,7 @@ import {
     Alert,
 } from "react-native";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Button } from "./elements";
 import config from "../config";
@@ -15,7 +15,7 @@ import config from "../config";
 const verifyRoomId = (roomId) => !(
     roomId === "" ||
     roomId.length !== 6 ||
-    roomId.match(/^[0-9a-z]+$/) 
+    roomId.match('^[a-fA-F0-9]+$').length !== 0
 )
 
 export default function EnterRoomCode({getName, setRoomId}) {
@@ -30,9 +30,11 @@ export default function EnterRoomCode({getName, setRoomId}) {
             )
             return 
         }
-        setRoomId(Id);
+        setRoomId(Id.toUpperCase());
         getName();
     };
+    
+    // useEffect(() => setId(Id.toUpperCase()), [Id])
 
     return (
         <View style={styles.container}>

@@ -1,7 +1,7 @@
 // to publish run expo publish
 // to start run npm start or expo start
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import NetInfo from '@react-native-community/netinfo';
 import { 
     StyleSheet,
@@ -27,12 +27,7 @@ export default function App() {
 	const [webSocket, setWebSocket] = useState();
 	const [roomId, setRoomId] = useState("");
 	const [initialCount, setInitialCount] = useState();
-
 	const [connected, setConnected] = useState(true);
-
-	NetInfo.addEventListener( state => {
-		if(!state.isConnected) setConnected(false);
-	})
 
 	const goToRoomPage = () => setPage(1);
 	const exitRoom = () => setPage(0);
@@ -41,6 +36,12 @@ export default function App() {
 		<EnterRoomPage goToRoomPage={goToRoomPage} setInitialCount={setInitialCount} setWebSocket={setWebSocket} setRoomId={setRoomId} roomId={roomId}/>,
 		<RoomPage exitRoomPage={exitRoom} webSocket={webSocket} initialCount={initialCount} roomId={roomId}/>,
 	]
+
+	useEffect(() => {
+		NetInfo.addEventListener( state => {
+			setConnected(state.isConnected)
+		})
+	}, [])
 
   	return (
     	<SafeAreaView style={[styles.outside, styles.AndroidSafeArea]}>

@@ -2,6 +2,7 @@
 // to start run npm start or expo start
 
 import { useState } from 'react';
+import NetInfo from '@react-native-community/netinfo';
 import { 
     StyleSheet,
 	SafeAreaView,
@@ -15,17 +16,23 @@ import {
 
 import {
 	RoomPage,
-	EnterRoomPage
+	EnterRoomPage,
+	NotConnected
 } from "./pages"
 
 import config from './config';
 
 export default function App() {
-	// shadows not working on ios
 	const [page, setPage] = useState(0);
 	const [webSocket, setWebSocket] = useState();
 	const [roomId, setRoomId] = useState("");
 	const [initialCount, setInitialCount] = useState();
+
+	const [connected, setConnected] = useState(true);
+
+	NetInfo.addEventListener( state => {
+		if(!state.isConnected) setConnected(false);
+	})
 
 	const goToRoomPage = () => setPage(1);
 	const exitRoom = () => setPage(0);
@@ -39,7 +46,11 @@ export default function App() {
     	<SafeAreaView style={[styles.outside, styles.AndroidSafeArea]}>
 			<View style={styles.container}>
 				<TitleBar />
-				{pages[page]}
+				{
+					!connected ?
+					<NotConnected/> :
+					pages[page]
+				}
 	    	  	<StatusBar style="auto" />
 			</View>
     	</SafeAreaView>

@@ -15,7 +15,7 @@ import config from "../config";
 const verifyRoomId = (roomId) => !(
     roomId === "" ||
     roomId.length !== 6 ||
-    roomId.match('^[a-fA-F0-9]+$').length !== 0
+    roomId.match('^[a-fA-F0-9]+$').length === 0
 )
 
 export default function EnterRoomCode({getName, setRoomId}) {

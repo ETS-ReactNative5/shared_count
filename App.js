@@ -1,8 +1,8 @@
 // to publish run expo publish
 // to start run npm start or expo start
-
 import { useEffect, useState } from 'react';
 import NetInfo from '@react-native-community/netinfo';
+import * as Linking from "expo-linking"
 import { 
     StyleSheet,
 	SafeAreaView,
@@ -29,12 +29,13 @@ export default function App() {
 	const [initialCount, setInitialCount] = useState();
 	const [connected, setConnected] = useState(true);
 
+
 	const goToRoomPage = () => setPage(1);
 	const exitRoom = () => setPage(0);
 
 	const pages = [
 		<EnterRoomPage goToRoomPage={goToRoomPage} setInitialCount={setInitialCount} setWebSocket={setWebSocket} setRoomId={setRoomId} roomId={roomId}/>,
-		<RoomPage exitRoomPage={exitRoom} webSocket={webSocket} initialCount={initialCount} roomId={roomId}/>,
+		<RoomPage exitRoomPage={exitRoom} webSocket={webSocket} initialCount={initialCount} roomId={roomId}/>
 	]
 
 	useEffect(() => {
@@ -42,6 +43,39 @@ export default function App() {
 			setConnected(state.isConnected)
 		})
 	}, [])
+
+	
+	function handleDeepLink(url){
+		let data = Linking.parse(url)
+		console.log(data)
+		const queryParams = data.queryParams
+		if (queryParams && queryParams.roomName) {
+			setRoomId(queryParams.roomName)
+		}
+	}
+
+	function listenerUrlLinking(event){
+		handleDeepLink(event.url)
+	}
+
+	useEffect(() => {
+		async function getInitialUrl(){
+			const initialUrl = await Linking.getInitialURL()
+			if (initialUrl) {
+				handleDeepLink(initialUrl)
+			}
+		}
+
+		if (!data){
+			getInitialUrl()
+		}
+
+		Linking.addEventListener('url', listenerUrlLinking)
+		return (()=>{
+			Linking.removeEventListener('url')
+		})
+	}, [])
+
 
   	return (
     	<SafeAreaView style={[styles.outside, styles.AndroidSafeArea]}>
@@ -52,7 +86,7 @@ export default function App() {
 					<NotConnected/> :
 					pages[page]
 				}
-	    	  	<StatusBar style="auto" />
+		<StatusBar style="auto" />
 			</View>
     	</SafeAreaView>
   	);

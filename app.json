@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme":"http",
     "name": "SharedCount",
     "slug": "shared_count",
     "version": "1.0.0",

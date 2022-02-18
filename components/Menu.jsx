@@ -23,7 +23,7 @@ function Button ({icon, action, main=false}) {
 }
 
 
-export default function Menu({exitAction, shareAction}) {
+export default function Menu({exitAction, shareAction, qrCodeAction}) {
     const [openMenu, setOpenMenu] = useState(false)
     const toggleMenu = () => setOpenMenu(!openMenu)
     const exit = () => {
@@ -75,6 +75,18 @@ export default function Menu({exitAction, shareAction}) {
                         />
                     }
                     action={exit}
+                />:<></>
+            }
+             {
+                openMenu ?
+                <Button 
+                    icon={
+                        <Image 
+                            source={require("../assets/icons/006-qr-code.png" )}
+                            style={styles.icon}
+                        />
+                    }
+                    action={qrCodeAction}
                 />:<></>
             }
             <Button 

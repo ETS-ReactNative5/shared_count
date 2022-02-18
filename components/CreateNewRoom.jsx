@@ -26,7 +26,7 @@ export default function CreateNewRoom ({getName, setRoomId, createRoom}) {
 
 const styles = StyleSheet.create({
     container: {
-        paddingVertical: 100,
+        paddingVertical: 60,
         paddingHorizontal: 20,
         width: "100%"
     },

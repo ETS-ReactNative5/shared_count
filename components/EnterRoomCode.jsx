@@ -52,6 +52,13 @@ export default function EnterRoomCode({getName, setRoomId}) {
                 backgroundColor={colors.blue}
                 textColor={colors.dark}
             />
+            <View style={styles.space} />
+            <Button 
+                label="Read QR Code"
+                action={}
+                backgroundColor={colors.blue}
+                textColor={colors.dark}
+            />
         </View>
     )
 }
@@ -64,6 +71,10 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 18
+    },
+    space: {
+        marginVertical: 15,
+        height: 40,
     },
     textInputStyle:{
         marginVertical: 15,

@@ -28,13 +28,15 @@ export default function App() {
 	const [roomId, setRoomId] = useState("");
 	const [initialCount, setInitialCount] = useState();
 	const [connected, setConnected] = useState(true);
-
+	const [roomFromUrl, setRoomFromUrl] = useState(null)
 
 	const goToRoomPage = () => setPage(1);
 	const exitRoom = () => setPage(0);
+	const isInRoomPage = () => (page === 1)
 
 	const pages = [
-		<EnterRoomPage goToRoomPage={goToRoomPage} setInitialCount={setInitialCount} setWebSocket={setWebSocket} setRoomId={setRoomId} roomId={roomId}/>,
+		<EnterRoomPage goToRoomPage={goToRoomPage} setInitialCount={setInitialCount} setWebSocket={setWebSocket} setRoomId={setRoomId} roomId={roomId} 
+		setRoomFromUrl={setRoomFromUrl} roomFromUrl={roomFromUrl}/>,
 		<RoomPage exitRoomPage={exitRoom} webSocket={webSocket} initialCount={initialCount} roomId={roomId}/>
 	]
 
@@ -50,7 +52,9 @@ export default function App() {
 		console.log(data)
 		const queryParams = data.queryParams
 		if (queryParams && queryParams.roomName) {
-			setRoomId(queryParams.roomName)
+			if (isInRoomPage())
+				exitRoom()
+			setRoomFromUrl(queryParams.roomName)
 		}
 	}
 
@@ -66,7 +70,7 @@ export default function App() {
 			}
 		}
 
-		if (!data){
+		if (!roomFromUrl){
 			getInitialUrl()
 		}
 

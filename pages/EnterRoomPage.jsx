@@ -13,6 +13,8 @@ export default function EnterRoomPage({
   setWebSocket,
   setRoomId,
   roomId,
+  setRoomFromUrl,
+  roomFromUrl,
 }) {
   const [showPrompt, setShowPrompt] = useState(false);
   const closePrompt = () => setShowPrompt(false);
@@ -24,10 +26,12 @@ export default function EnterRoomPage({
     createRoom(config.apiEndpoint, setRoomId, setInitialCount);
 
   useEffect(() => {
-    if (roomId) {
+    if (roomFromUrl) {
+      setRoomId(roomFromUrl);
       openPrompt();
     }
-  }, [roomId]);
+    return setRoomFromUrl(null);
+  }, [roomFromUrl]);
 
   const enter = (userName) => {
     goToRoomPage();

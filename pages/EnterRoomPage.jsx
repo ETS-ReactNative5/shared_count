@@ -25,12 +25,9 @@ export default function EnterRoomPage({
   const [showQrCodeReader, setShowQrCodeReader] = useState(false);
   const [showPrompt, setShowPrompt] = useState(false);
   const closePrompt = () => setShowPrompt(false);
-  const openPrompt = () => {
-    setShowPrompt(true);
-  };
+  const openPrompt = () => setShowPrompt(true);
 
-  const createRoomId = () =>
-    createRoom(config.apiEndpoint, setRoomId, setInitialCount);
+  const createRoomId = () => createRoom(config.apiEndpoint, setRoomId, setInitialCount);
 
   useEffect(() => {
     if (roomFromUrl) {
@@ -54,14 +51,11 @@ export default function EnterRoomPage({
 
   return (
     <View style={styles.page}>
-      {showQrCodeReader ? (
+      {showQrCodeReader ? 
         <QRCodeReader
-          exitReader={() => {
-            setShowQrCodeReader(false);
-          }}
+          exitReader={() => setShowQrCodeReader(false)}
           handleDeepLink={handleDeepLink}
-        />
-      ) : (
+        /> :
         <View>
           <EnterRoomCode
             getName={openPrompt}
@@ -70,7 +64,7 @@ export default function EnterRoomPage({
           />
           <CreateNewRoom getName={openPrompt} createRoom={createRoomId} />
         </View>
-      )}
+      }
       {showPrompt ? <GetName closePrompt={closePrompt} enter={enter} /> : <></>}
     </View>
   );

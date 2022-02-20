@@ -18,10 +18,12 @@ export default function QRCodeReader({ exitReader, handleDeepLink }) {
       setHasPermission(status === "granted");
     })();
   }, []);
+  useEffect(() => scanned ? exitReader() : null, [scanned] )
+
   const handleBarCodeScanned = ({ type, data }) => {
+    // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    if (type === "org.iso.QRCode" || type === 256) handleDeepLink(data);
     setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-    if (type === "org.iso.QRCode") handleDeepLink(data);
   };
   if (hasPermission === null) {
     return <Text>Requesting for camera permission</Text>;

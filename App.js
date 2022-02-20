@@ -38,8 +38,8 @@ export default function App() {
 		console.log(data)
 		const queryParams = data.queryParams
 		if (queryParams && queryParams.roomName) {
-			if (isInRoomPage())
-				exitRoom()
+			exitRoom()
+			if (isInRoomPage()) exitRoom()
 			setRoomFromUrl(queryParams.roomName)
 		}
 	}

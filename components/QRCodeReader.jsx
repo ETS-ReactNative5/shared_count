@@ -7,11 +7,18 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
+
 import config from "../config";
 
 export default function QRCodeReader({ exitReader, handleDeepLink }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
+  const handleBarCodeScanned = ({ type, data }) => {
+    // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    if (type === "org.iso.QRCode" || type === 256) handleDeepLink(data);
+    setScanned(true);
+  };
+
   useEffect(() => {
     (async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
@@ -19,18 +26,10 @@ export default function QRCodeReader({ exitReader, handleDeepLink }) {
     })();
   }, []);
   useEffect(() => scanned ? exitReader() : null, [scanned] )
-
-  const handleBarCodeScanned = ({ type, data }) => {
-    // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-    if (type === "org.iso.QRCode" || type === 256) handleDeepLink(data);
-    setScanned(true);
-  };
-  if (hasPermission === null) {
-    return <Text style={styles.message}>Requesting for camera permission</Text>;
-  }
-  if (hasPermission === false) {
-    return <Text style={styles.message}>No access to camera</Text>;
-  }
+  useEffect(() => {
+    if (hasPermission === null)  return <Text style={styles.message}>Requesting for camera permission</Text>;
+    if (hasPermission === false) return <Text style={styles.message}>No access to camera</Text>;
+  }, [hasPermission])
 
   return (
     <View style={styles.container}>
@@ -39,10 +38,7 @@ export default function QRCodeReader({ exitReader, handleDeepLink }) {
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
       />
       <TouchableOpacity
-        onPress={() => {
-          console.log("pressionado");
-          exitReader();
-        }}
+        onPress={exitReader}
         style={styles.exit}
       >
         <Image

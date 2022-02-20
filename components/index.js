@@ -6,7 +6,6 @@ import Counter from "./Counter";
 import CountButton from "./CountButton";
 import PlayerList from "./PlayerList";
 import Menu from "./Menu";
-
 import GetName from "./GetName";
 import QRCodeReader from './QRCodeReader'
 import QRCodeView from './QRCode'

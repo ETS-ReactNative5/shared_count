@@ -4,8 +4,6 @@ import {
     Text
 } from 'react-native'
 
-import config from '../config'
-
 export default function Counter ({count}) {
     return (
         <View style={styles.container}>
@@ -13,7 +11,6 @@ export default function Counter ({count}) {
                 {count}
             </Text>
         </View>
-
     )
 }
 

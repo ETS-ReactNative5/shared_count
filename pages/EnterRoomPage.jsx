@@ -34,7 +34,7 @@ export default function EnterRoomPage({
       setRoomId(roomFromUrl);
       openPrompt();
     }
-    return setRoomFromUrl(null);
+    setRoomFromUrl(null);
   }, [roomFromUrl]);
 
   const enter = (userName) => {

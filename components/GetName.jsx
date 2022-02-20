@@ -11,7 +11,7 @@ import {
 
 import config from "../config";
 
-export default function GetName({ name, closePrompt, enter }) {
+export default function GetName({closePrompt, enter }) {
   const [userName, setUserName] = useState("");
   const submit = () => {
     if (userName === "") {
@@ -51,7 +51,6 @@ export default function GetName({ name, closePrompt, enter }) {
   );
 }
 
-const colors = config.colors;
 const styles = StyleSheet.create({
   container: {
     height: "100%",

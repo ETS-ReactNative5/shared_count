@@ -50,7 +50,6 @@ export default function RoomPage({
     const urlQRCode = Linking.createURL("/enter-room", {
       queryParams: { roomName: roomId },
     });
-
     setShareLink(urlQRCode);
   }, [roomId]);
 
@@ -70,8 +69,8 @@ export default function RoomPage({
       />
       {
         showQrCode ? 
-          <QRCodeView closeQrCode={closeQrCode} link={shareLink} /> :
-          <></>
+        <QRCodeView closeQrCode={closeQrCode} link={shareLink} /> :
+        <></>
       }
     </View>
   );

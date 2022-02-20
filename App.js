@@ -32,14 +32,12 @@ export default function App() {
 
 	const goToRoomPage = () => setPage(1);
 	const exitRoom = () => setPage(0);
-	const isInRoomPage = () => page === 1;
 	const handleDeepLink = (url) => {
 		const data = Linking.parse(url)
 		console.log(data)
 		const queryParams = data.queryParams
 		if (queryParams && queryParams.roomName) {
 			exitRoom()
-			if (isInRoomPage()) exitRoom()
 			setRoomFromUrl(queryParams.roomName)
 		}
 	}
@@ -64,12 +62,10 @@ export default function App() {
 		/>
 	]
 
-	useEffect(() => {
-		NetInfo.addEventListener( state => setConnected(state.isConnected))
-	}, [])
+	useEffect(() => NetInfo.addEventListener( state => setConnected(state.isConnected)), [])
 
 	useEffect(() => {
-		async function getInitialUrl(){
+		const getInitialUrl = async () => {
 			const initialUrl = await Linking.getInitialURL()
 			if (initialUrl) handleDeepLink(initialUrl)
 		}

@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 
-import { EnterRoomCode, CreateNewRoom, GetName } from "../components";
+import {
+  EnterRoomCode,
+  CreateNewRoom,
+  GetName,
+  QRCodeReader,
+} from "../components";
 
 import { createRoom, enterRoom } from "../models";
 
 import config from "../config";
-import QRCodeReader from "../components/QRCodeReader";
 
 export default function EnterRoomPage({
   goToRoomPage,

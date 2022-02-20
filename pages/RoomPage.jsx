@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import * as Linking from "expo-linking";
 import { StyleSheet, View } from "react-native";
-import QRCodeView from "../components/QRCode";
+import { QRCodeView } from "../components/";
 
 import {
   ShowRoom,

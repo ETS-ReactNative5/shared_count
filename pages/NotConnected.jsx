@@ -1,7 +1,7 @@
 import {
     View, 
     Text,
-    StyleSheet
+    StyleSheet,
 } from "react-native"
 
 export default function NotConnected () {

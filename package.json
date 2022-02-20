@@ -18,6 +18,7 @@
     "react-icons": "^4.3.1",
     "react-native": "0.64.3",
     "react-native-prompt-android": "^1.1.0",
+    "react-native-restart": "^0.0.20",
     "react-native-web": "0.17.1"
   },
   "devDependencies": {

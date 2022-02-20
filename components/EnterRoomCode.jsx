@@ -87,7 +87,6 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 40,
     flexDirection: "row",
-    justifyContent: "center",
     alignItems: "center",
   },
   inputIcon: {
@@ -110,7 +109,7 @@ const styles = StyleSheet.create({
     height: 40,
   },
   textInputStyle: {
-    flex: 1,
+    flex: 9,
     height: 40,
     borderStyle: "solid",
     borderBottomWidth: 2,

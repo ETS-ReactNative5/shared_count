@@ -1,4 +1,4 @@
-import { StyleSheet, View, TextInput, Text, Alert } from "react-native";
+import { StyleSheet, View, TextInput, Text, Alert, Image } from "react-native";
 
 import { useEffect, useState } from "react";
 
@@ -30,11 +30,22 @@ export default function EnterRoomCode({ getName, setRoomId }) {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Enter room code:</Text>
-      <TextInput
-        placeholder="A1B2C3"
-        style={styles.textInputStyle}
-        onChangeText={setId}
-      ></TextInput>
+      <View style={styles.searchSection}>
+        <TextInput
+          placeholder="A1B2C3"
+          style={[styles.textInputStyle, styles.input]}
+          onChangeText={setId}
+        ></TextInput>
+        <View style={styles.inputIcon}>
+          <Image
+            style={styles.qrcodeIcon}
+            source={require("../assets/icons/007-qr-code-read.png")}
+            name="ios-search"
+            size={10}
+          />
+        </View>
+      </View>
+
       <Button
         label="Ok"
         action={handleSubmit}
@@ -42,12 +53,6 @@ export default function EnterRoomCode({ getName, setRoomId }) {
         textColor={colors.dark}
       />
       <View style={styles.space} />
-      <Button
-        label="Read QR Code"
-        action={() => {}}
-        backgroundColor={colors.blue}
-        textColor={colors.dark}
-      />
     </View>
   );
 }
@@ -58,6 +63,26 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     width: "100%",
   },
+  searchSection: {
+    marginVertical: 15,
+    paddingVertical: 20,
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  inputIcon: {
+    flex: 1,
+    height: 40,
+    alignItems: "flex-end",
+    borderBottomWidth: 2,
+  },
+  qrcodeIcon: {
+    height: 25,
+    marginTop: 8,
+    width: 25,
+    resizeMode: "contain",
+  },
   text: {
     fontSize: 18,
   },
@@ -66,7 +91,7 @@ const styles = StyleSheet.create({
     height: 40,
   },
   textInputStyle: {
-    marginVertical: 15,
+    flex: 1,
     height: 40,
     borderStyle: "solid",
     borderBottomWidth: 2,

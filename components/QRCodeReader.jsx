@@ -26,10 +26,10 @@ export default function QRCodeReader({ exitReader, handleDeepLink }) {
     setScanned(true);
   };
   if (hasPermission === null) {
-    return <Text>Requesting for camera permission</Text>;
+    return <Text style={styles.message}>Requesting for camera permission</Text>;
   }
   if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
+    return <Text style={styles.message}>No access to camera</Text>;
   }
 
   return (
@@ -43,6 +43,7 @@ export default function QRCodeReader({ exitReader, handleDeepLink }) {
           console.log("pressionado");
           exitReader();
         }}
+        style={styles.exit}
       >
         <Image
           source={require("../assets/icons/003-exit.png")}
@@ -65,7 +66,18 @@ const styles = StyleSheet.create({
   icon: {
     height: 25,
     width: 25,
-    marginBottom: 50,
-    tintColor: colors.orange,
+    tintColor: colors.dark,
   },
+  exit: {
+    backgroundColor: colors.red,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    margin: 50,
+    borderRadius: 50,
+  },
+  message: {
+    padding: 20
+  }
 });

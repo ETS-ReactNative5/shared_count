@@ -73,6 +73,6 @@ export default function EnterRoomPage({
 const styles = StyleSheet.create({
   page: {
     width: "100%",
-    minHeight: "80%",
+    minHeight: "90%",
   },
 });

@@ -6,6 +6,7 @@ import { EnterRoomCode, CreateNewRoom, GetName } from "../components";
 import { createRoom, enterRoom } from "../models";
 
 import config from "../config";
+import QRCodeReader from "../components/QRCodeReader";
 
 export default function EnterRoomPage({
   goToRoomPage,
@@ -15,7 +16,9 @@ export default function EnterRoomPage({
   roomId,
   setRoomFromUrl,
   roomFromUrl,
+  handleDeepLink,
 }) {
+  const [showQrCodeReader, setShowQrCodeReader] = useState(false);
   const [showPrompt, setShowPrompt] = useState(false);
   const closePrompt = () => setShowPrompt(false);
   const openPrompt = () => {
@@ -47,8 +50,23 @@ export default function EnterRoomPage({
 
   return (
     <View style={styles.page}>
-      <EnterRoomCode getName={openPrompt} setRoomId={setRoomId} />
-      <CreateNewRoom getName={openPrompt} createRoom={createRoomId} />
+      {showQrCodeReader ? (
+        <QRCodeReader
+          exitReader={() => {
+            setShowQrCodeReader(false);
+          }}
+          handleDeepLink={handleDeepLink}
+        />
+      ) : (
+        <View>
+          <EnterRoomCode
+            getName={openPrompt}
+            setRoomId={setRoomId}
+            setShowQrCodeReader={setShowQrCodeReader}
+          />
+          <CreateNewRoom getName={openPrompt} createRoom={createRoomId} />
+        </View>
+      )}
       {showPrompt ? <GetName closePrompt={closePrompt} enter={enter} /> : <></>}
     </View>
   );

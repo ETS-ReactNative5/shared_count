@@ -36,7 +36,7 @@ export default function App() {
 
 	const pages = [
 		<EnterRoomPage goToRoomPage={goToRoomPage} setInitialCount={setInitialCount} setWebSocket={setWebSocket} setRoomId={setRoomId} roomId={roomId} 
-		setRoomFromUrl={setRoomFromUrl} roomFromUrl={roomFromUrl}/>,
+		setRoomFromUrl={setRoomFromUrl} roomFromUrl={roomFromUrl} handleDeepLink={handleDeepLink}/>,
 		<RoomPage exitRoomPage={exitRoom} webSocket={webSocket} initialCount={initialCount} roomId={roomId}/>
 	]
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { StyleSheet, View, TouchableOpacity, Image, Alert } from "react-native";
+import { BarCodeScanner } from "expo-barcode-scanner";
 
 import config from "../config";
 

@@ -22,7 +22,11 @@ const verifyRoomId = (roomId) =>
     roomId.match("^[a-fA-F0-9]+$").length === 0
   );
 
-export default function EnterRoomCode({ getName, setRoomId }) {
+export default function EnterRoomCode({
+  getName,
+  setRoomId,
+  setShowQrCodeReader,
+}) {
   const colors = config.colors;
   const [Id, setId] = useState("");
 
@@ -50,7 +54,7 @@ export default function EnterRoomCode({ getName, setRoomId }) {
           <View style={styles.inputIcon}>
             <TouchableOpacity
               onPress={() => {
-                console.log("Pressed");
+                setShowQrCodeReader(true);
               }}
             >
               <Image

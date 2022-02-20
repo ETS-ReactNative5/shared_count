@@ -9,7 +9,7 @@ import Menu from "./Menu";
 
 import GetName from "./GetName";
 import QRCodeReader from './QRCodeReader'
-import QRCode from './QRCode'
+import QRCodeView from './QRCode'
 
 
 export {
@@ -23,6 +23,6 @@ export {
     Menu,
     GetName,
     QRCodeReader,
-    QRCode
+    QRCodeView
 
 }

@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme":"http",
     "name": "SharedCount",
     "slug": "shared_count",
     "version": "1.0.0",
@@ -12,14 +13,32 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "associatedDomains":["applinks:3.13.147.30"]
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.guilevieiram.shared_count"
+      "package": "com.guilevieiram.shared_count",
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": [
+            {
+              "scheme": "http",
+              "host": "*.3.13.147.30",
+              "pathPrefix": "/enter-room"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ],
+          "autoVerify": true
+        }
+      ]
     }
   }
 }

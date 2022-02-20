@@ -28,27 +28,13 @@ export default function App() {
 	const [roomId, setRoomId] = useState("");
 	const [initialCount, setInitialCount] = useState();
 	const [connected, setConnected] = useState(true);
-	const [roomFromUrl, setRoomFromUrl] = useState(null)
+	const [roomFromUrl, setRoomFromUrl] = useState(null);
 
 	const goToRoomPage = () => setPage(1);
 	const exitRoom = () => setPage(0);
-	const isInRoomPage = () => (page === 1)
-
-	const pages = [
-		<EnterRoomPage goToRoomPage={goToRoomPage} setInitialCount={setInitialCount} setWebSocket={setWebSocket} setRoomId={setRoomId} roomId={roomId} 
-		setRoomFromUrl={setRoomFromUrl} roomFromUrl={roomFromUrl} handleDeepLink={handleDeepLink}/>,
-		<RoomPage exitRoomPage={exitRoom} webSocket={webSocket} initialCount={initialCount} roomId={roomId}/>
-	]
-
-	useEffect(() => {
-		NetInfo.addEventListener( state => {
-			setConnected(state.isConnected)
-		})
-	}, [])
-
-	
-	function handleDeepLink(url){
-		let data = Linking.parse(url)
+	const isInRoomPage = () => page === 1;
+	const handleDeepLink = (url) => {
+		const data = Linking.parse(url)
 		console.log(data)
 		const queryParams = data.queryParams
 		if (queryParams && queryParams.roomName) {
@@ -57,27 +43,40 @@ export default function App() {
 			setRoomFromUrl(queryParams.roomName)
 		}
 	}
+	const listenerUrlLinking = (event) => handleDeepLink(event.url);
 
-	function listenerUrlLinking(event){
-		handleDeepLink(event.url)
-	}
+	const pages = [
+		<EnterRoomPage 
+			goToRoomPage={goToRoomPage} 
+			setInitialCount={setInitialCount} 
+			setWebSocket={setWebSocket} 
+			setRoomId={setRoomId} 
+			roomId={roomId} 
+			setRoomFromUrl={setRoomFromUrl} 
+			roomFromUrl={roomFromUrl} 
+			handleDeepLink={handleDeepLink}
+		/>,
+		<RoomPage 
+			exitRoomPage={exitRoom} 
+			webSocket={webSocket} 
+			initialCount={initialCount} 
+			roomId={roomId}
+		/>
+	]
+
+	useEffect(() => {
+		NetInfo.addEventListener( state => setConnected(state.isConnected))
+	}, [])
 
 	useEffect(() => {
 		async function getInitialUrl(){
 			const initialUrl = await Linking.getInitialURL()
-			if (initialUrl) {
-				handleDeepLink(initialUrl)
-			}
+			if (initialUrl) handleDeepLink(initialUrl)
 		}
 
-		if (!roomFromUrl){
-			getInitialUrl()
-		}
-
+		if (!roomFromUrl) getInitialUrl();
 		Linking.addEventListener('url', listenerUrlLinking)
-		return (()=>{
-			Linking.removeEventListener('url')
-		})
+		return () => Linking.removeEventListener('url');
 	}, [])
 
 
@@ -104,7 +103,4 @@ const styles = StyleSheet.create({
 	},
   	container: {
   	},
-	AndroidSafeArea: {
-	    // paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
-	},
 });

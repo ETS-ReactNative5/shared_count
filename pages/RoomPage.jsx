@@ -68,11 +68,11 @@ export default function RoomPage({
         shareAction={share}
         qrCodeAction={qrCodeAction}
       />
-      {showQrCode ? (
-        <QRCodeView closeQrCode={closeQrCode} link={shareLink} />
-      ) : (
-        <></>
-      )}
+      {
+        showQrCode ? 
+          <QRCodeView closeQrCode={closeQrCode} link={shareLink} /> :
+          <></>
+      }
     </View>
   );
 }

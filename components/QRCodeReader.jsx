@@ -5,7 +5,6 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  Button,
 } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import config from "../config";

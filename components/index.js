@@ -24,5 +24,4 @@ export {
     GetName,
     QRCodeReader,
     QRCodeView
-
 }

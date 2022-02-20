@@ -1,10 +1,7 @@
-import { useState } from "react";
 import {
   StyleSheet,
   View,
   TouchableWithoutFeedback,
-  KeyboardAvoidingView,
-  Text,
 } from "react-native";
 import QRCode from "react-native-qrcode-svg";
 

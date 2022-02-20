@@ -10,7 +10,7 @@ import {
   Keyboard,
 } from "react-native";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { Button } from "./elements";
 import config from "../config";
@@ -38,8 +38,6 @@ export default function EnterRoomCode({
     setRoomId(Id.toUpperCase());
     getName();
   };
-
-  // useEffect(() => setId(Id.toUpperCase()), [Id])
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

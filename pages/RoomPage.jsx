@@ -42,7 +42,7 @@ export default function RoomPage({
     increaseCount(webSocket, count);
   };
   const share = () => {
-    shareRoom(roomId);
+    shareRoom(roomId, shareLink);
   };
 
   useEffect(() => {
@@ -67,11 +67,11 @@ export default function RoomPage({
         shareAction={share}
         qrCodeAction={qrCodeAction}
       />
-      {
-        showQrCode ? 
-        <QRCodeView closeQrCode={closeQrCode} link={shareLink} /> :
+      {showQrCode ? (
+        <QRCodeView closeQrCode={closeQrCode} link={shareLink} />
+      ) : (
         <></>
-      }
+      )}
     </View>
   );
 }

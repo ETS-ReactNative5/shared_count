@@ -37,8 +37,8 @@ export default function App() {
 		console.log(data)
 		const queryParams = data.queryParams
 		if (queryParams && queryParams.roomName) {
-			exitRoom()
 			setRoomFromUrl(queryParams.roomName)
+			exitRoom()
 		}
 	}
 	const listenerUrlLinking = (event) => handleDeepLink(event.url);

@@ -39,16 +39,17 @@ export default function QRCodeView({ link, closeQrCode }) {
 const colors = config.colors;
 const styles = StyleSheet.create({
   container: {
-    height: "100%",
+    height: "80%",
     width: "100%",
     position: "absolute",
-    top: 0,
+    bottom: 0,
     right: 0,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     elevation: 20,
-    backgroundColor: colors.dark,
+    backgroundColor: "rgba(0,0,0,0.5)",
+    
   },
   message: {
     paddingHorizontal: 20,

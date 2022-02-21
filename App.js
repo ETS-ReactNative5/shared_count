@@ -100,6 +100,7 @@ const colors = config.colors
 const styles = StyleSheet.create({
     outside: {
         backgroundColor: colors.light,
+        height: "100%",
         minHeight: "100%",
     },
     container: {},

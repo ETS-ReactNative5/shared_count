@@ -48,7 +48,7 @@ export default function EnterRoomCode({
             placeholder="A1B2C3"
             style={styles.textInputStyle}
             onChangeText={setId}
-          ></TextInput>
+          />
           <View style={styles.inputIcon}>
             <TouchableOpacity
               onPress={() => {

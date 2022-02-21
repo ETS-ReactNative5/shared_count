@@ -1,16 +1,14 @@
-import createRoom from "./createRoom";
+import createRoomAPI from "./createRoom";
 import enterRoom from "./enterRoom";
 import increaseCount from "./increaseCount";
-import exitRoom from "./exitRoom";
 import shareRoom from "./shareRoom";
 import setupSocket from "./setupSocket";
 import getUserList from "./getUserList";
 
 export {
-    createRoom,
+    createRoomAPI,
     enterRoom,
     increaseCount,
-    exitRoom,
     shareRoom,
     setupSocket,
     getUserList,

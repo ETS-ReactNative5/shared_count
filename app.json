@@ -1,6 +1,6 @@
 {
   "expo": {
-    "scheme":"http",
+    "scheme": "http",
     "name": "SharedCount",
     "slug": "shared_count",
     "version": "1.0.0",
@@ -14,7 +14,9 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "associatedDomains":["applinks:3.13.147.30"]
+      "associatedDomains": [
+        "applinks:3.13.147.30"
+      ]
     },
     "android": {
       "adaptiveIcon": {
@@ -39,6 +41,7 @@
           "autoVerify": true
         }
       ]
-    }
+    },
+    "description": ""
   }
 }

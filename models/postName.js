@@ -1,9 +1,8 @@
-export default function postName (webSocket, roomId, userName) {
+export default function postName (webSocket, username) {
 	webSocket.send(
 		JSON.stringify({
   		    event: 'user.joined',
-  		    username: userName
+  		    username: username
   		})
 	)
-    console.log(`posting name ${userName} on room ${roomId}`)
 }

@@ -35,6 +35,7 @@ export default function EnterRoomCode({
       Alert.alert("Room name invalid.", "Please enter a valid room name.");
       return;
     }
+    Keyboard.dismiss()
     setRoomId(Id.toUpperCase());
     getName();
   };
@@ -48,7 +49,7 @@ export default function EnterRoomCode({
             placeholder="A1B2C3"
             style={styles.textInputStyle}
             onChangeText={setId}
-          ></TextInput>
+          />
           <View style={styles.inputIcon}>
             <TouchableOpacity
               onPress={() => {

@@ -11,14 +11,15 @@ import {
 
 import config from "../config";
 
-export default function GetName({closePrompt, enter }) {
-  const [userName, setUserName] = useState("");
+export default function GetName({closePrompt, enter, setUsername }) {
+  const [localUser, setLocalUser] = useState("")
   const submit = () => {
-    if (userName === "") {
+    if (localUser === "") {
       Alert.alert("Name not valid", "Please insert a valid name.");
       return;
     }
-    enter(userName);
+    enter();
+    setUsername(localUser)
     closePrompt();
   };
 
@@ -31,7 +32,7 @@ export default function GetName({closePrompt, enter }) {
         </Text>
         <TextInput
           placeholder="Name"
-          onChangeText={setUserName}
+          onChangeText={setLocalUser}
           style={styles.input}
         />
         <View style={styles.buttons}>

@@ -3,6 +3,7 @@
 import {useEffect, useState} from 'react';
 import NetInfo from '@react-native-community/netinfo';
 import * as Linking from "expo-linking"
+import { Platform } from 'react-native';
 import {
     StyleSheet,
     SafeAreaView,
@@ -82,8 +83,14 @@ export default function App() {
 
 
     return (
-        <SafeAreaView style={[styles.outside, styles.AndroidSafeArea]}>
-            <View style={styles.container}>
+        <SafeAreaView style={[
+            styles.outside,
+            styles.AndroidSafeArea,
+        ]}>
+            <View style={[
+                styles.container,
+                Platform.OS === "web" ? {maxWidth: 800} : {}
+            ]}>
                 <TitleBar/>
                 {
                     !connected ?
@@ -102,6 +109,11 @@ const styles = StyleSheet.create({
         backgroundColor: colors.light,
         height: "100%",
         minHeight: "100%",
+        // display: "flex",
+        // justifyContent:"center"
     },
-    container: {},
+    container: {
+        width: "100%",
+        marginHorizontal: "auto"
+    },
 });

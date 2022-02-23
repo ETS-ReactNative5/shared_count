@@ -11,11 +11,15 @@ import { Camera } from 'expo-camera';
 
 import config from "../config";
 
+const parseUrl = (url) => JSON.parse('{"' + url.split("?")[1].replace(/&/g, '","').replace(/=/g,'":"') + '"}', function(key, value) { return key===""?value:decodeURIComponent(value) });
+
+
 export default function QRCodeReader({ exitReader, handleDeepLink }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const handleBarCodeScanned = ({ type, data }) => {
-    alert(`Entering room ${data}.`);
+    console.log("data object", typeof data, data)
+    alert(`Entering room ${parseUrl(data).roomName}.`);
     if (type === "org.iso.QRCode" || type === 256) handleDeepLink(data);
     setScanned(true);
   };

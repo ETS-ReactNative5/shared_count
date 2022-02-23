@@ -6,7 +6,8 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { BarCodeScanner } from "expo-barcode-scanner";
+// import { BarCodeScanner } from "expo-barcode-scanner";
+import { Camera } from 'expo-camera';
 
 import config from "../config";
 
@@ -14,28 +15,35 @@ export default function QRCodeReader({ exitReader, handleDeepLink }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const handleBarCodeScanned = ({ type, data }) => {
-    // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    alert(`Entering room ${data}.`);
     if (type === "org.iso.QRCode" || type === 256) handleDeepLink(data);
     setScanned(true);
   };
 
   useEffect(() => {
     (async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync();
+      // const { granted } = await BarCodeScanner.requestPermissionsAsync();
+      // setHasPermission(granted);
+      const { status } = await Camera.requestCameraPermissionsAsync();
       setHasPermission(status === "granted");
     })();
   }, []);
   useEffect(() => scanned ? exitReader() : null, [scanned] )
   useEffect(() => {
-    if (hasPermission === null)  return <Text style={styles.message}>Requesting for camera permission</Text>;
-    if (hasPermission === false) return <Text style={styles.message}>No access to camera</Text>;
+    console.log(`permission status has changed ${hasPermission}`)
+    if (hasPermission === null)  return <Text style={styles.message}>Requesting for camera permission.</Text>;
+    if (hasPermission === false) return <Text style={styles.message}>No access to camera.</Text>;
   }, [hasPermission])
 
   return (
     <View style={styles.container}>
-      <BarCodeScanner
+      <Camera
         style={StyleSheet.absoluteFillObject}
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+        ratio={"16:9"}
+        barCodeScannerSettings={{
+          barCodeTypes: ["qr"],
+        }}
       />
       <TouchableOpacity
         onPress={exitReader}
@@ -74,6 +82,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   message: {
-    padding: 20
+    padding: 40
   }
 });

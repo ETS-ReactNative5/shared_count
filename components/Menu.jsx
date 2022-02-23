@@ -4,11 +4,15 @@ import { BarCodeScanner } from "expo-barcode-scanner";
 
 import config from "../config";
 
-function Button({ icon, action, color = null }) {
+function Button({ icon, action, closeMenu = ()=>{}, color = null}) {
+  const handlePress = () => {
+    action();
+    closeMenu();
+  }
   return (
     <TouchableOpacity
       style={[styles.button, color ? color : {}]}
-      onPress={action}
+      onPress={handlePress}
     >
       {icon}
     </TouchableOpacity>
@@ -18,6 +22,7 @@ function Button({ icon, action, color = null }) {
 export default function Menu({ exitAction, shareAction, qrCodeAction }) {
   const [openMenu, setOpenMenu] = useState(false);
   const toggleMenu = () => setOpenMenu(!openMenu);
+  const closeMenu = () => setOpenMenu(false);
   const exit = () => {
     Alert.alert(
       "Exiting room.",
@@ -45,48 +50,44 @@ export default function Menu({ exitAction, shareAction, qrCodeAction }) {
 
   return (
     <View style={styles.container}>
-      {openMenu ? (
-        <Button
-          icon={
-            <Image
-              source={require("../assets/icons/003-exit.png")}
-              style={styles.icon}
-            />
-          }
-          action={exit}
-          color={styles.red}
-        />
-      ) : (
+      {openMenu ? 
+        <>
+          <Button
+            icon={
+              <Image
+                source={require("../assets/icons/003-exit.png")}
+                style={styles.icon}
+              />
+            }
+            action={exit}
+            color={styles.red}
+            closeMenu={closeMenu}
+          />
+          <Button
+            icon={
+              <Image
+                source={require("../assets/icons/005-share.png")}
+                style={styles.icon}
+              />
+            }
+            action={share}
+            color={styles.blue}
+            closeMenu={closeMenu}
+          />
+          <Button
+            icon={
+              <Image
+                source={require("../assets/icons/006-qr-code.png")}
+                style={styles.icon}
+              />
+            }
+            action={qrCodeAction}
+            color={styles.blue}
+            closeMenu={closeMenu}
+          />
+        </> :
         <></>
-      )}
-      {openMenu ? (
-        <Button
-          icon={
-            <Image
-              source={require("../assets/icons/005-share.png")}
-              style={styles.icon}
-            />
-          }
-          action={share}
-          color={styles.blue}
-        />
-      ) : (
-        <></>
-      )}
-      {openMenu ? (
-        <Button
-          icon={
-            <Image
-              source={require("../assets/icons/006-qr-code.png")}
-              style={styles.icon}
-            />
-          }
-          action={qrCodeAction}
-          color={styles.blue}
-        />
-      ) : (
-        <></>
-      )}
+      }
       <Button
         icon={
           <Image

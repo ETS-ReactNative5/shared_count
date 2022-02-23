@@ -39,7 +39,7 @@ export default function QRCodeView({ link, closeQrCode }) {
 const colors = config.colors;
 const styles = StyleSheet.create({
   container: {
-    height: "80%",
+    height: "100%",
     width: "100%",
     position: "absolute",
     bottom: 0,
@@ -59,10 +59,12 @@ const styles = StyleSheet.create({
     marginHorizontal: "auto",
     paddingHorizontal: 10,
     paddingVertical: 20,
-    minHeight: 200,
     backgroundColor: "white",
     borderRadius: 20,
     shadowColor: "black",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     elevation: 30,
   },
 });

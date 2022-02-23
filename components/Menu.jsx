@@ -108,7 +108,7 @@ const colors = config.colors;
 const styles = StyleSheet.create({
   container: {
     position: "absolute",
-    bottom: "-10%",
+    bottom: 30,
     right: 50,
   },
   button: {

@@ -25,7 +25,7 @@ export default function RoomPage(
     const [players, setPlayers] = useState([]);
     const [cleanWsAction, setCleanWsAction] = useState(()=>() => {
     })
-    const [wsConnected, setWsConnected] = useState(false)
+    const [wsConnected, setWsConnected] = useState(null)
     const [webSocket, setWebSocket] = useState()
 
     const [showQrCode, setShowQrCode] = useState(false);
@@ -71,7 +71,7 @@ export default function RoomPage(
     return (
         <View style={styles.page}>
             {
-                !wsConnected ? <Text>Desconectado</Text> :
+                wsConnected === false ? <Text>Desconectado</Text> :
                     <View>
                         <ShowRoom roomCode={roomId}/>
                         <Counter count={counter}/>

@@ -11,7 +11,7 @@ import { Camera } from 'expo-camera';
 
 import config from "../config";
 
-const parseUrl = (url) => JSON.parse('{"' + url.split("?")[1].replace(/&/g, '","').replace(/=/g,'":"') + '"}', function(key, value) { return key===""?value:decodeURIComponent(value) });
+const parseUrl = (url) => JSON.parse('{"' + url.split("?")[1].replace(/&/g, '","').replace(/=/g,'":"') + '"}', (key, value) => { return key===""?value:decodeURIComponent(value) });
 
 
 export default function QRCodeReader({ exitReader, handleDeepLink }) {

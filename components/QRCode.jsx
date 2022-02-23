@@ -55,10 +55,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   window: {
-    width: "80%",
     marginHorizontal: "auto",
-    paddingHorizontal: 10,
-    paddingVertical: 20,
+    padding: 20,
     backgroundColor: "white",
     borderRadius: 20,
     shadowColor: "black",

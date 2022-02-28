@@ -3,7 +3,6 @@ import {
   View,
   TextInput,
   Text,
-  Alert,
   Image,
   TouchableOpacity,
   TouchableWithoutFeedback,
@@ -32,7 +31,7 @@ export default function EnterRoomCode({
 
   const handleSubmit = () => {
     if (!verifyRoomId(Id)) {
-      Alert.alert("Room name invalid.", "Please enter a valid room name.");
+      alert("Room name invalid.", "Please enter a valid room name.");
       return;
     }
     Keyboard.dismiss()

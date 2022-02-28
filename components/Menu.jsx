@@ -1,11 +1,14 @@
 import { useState } from "react";
-import { StyleSheet, View, TouchableOpacity, Image, Alert } from "react-native";
+import { 
+  Platform,
+  StyleSheet, View, TouchableOpacity, Image, Alert } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 
 import config from "../config";
 
 function Button({ icon, action, closeMenu = ()=>{}, color = null}) {
   const handlePress = () => {
+    console.log("press handled")
     action();
     closeMenu();
   }
@@ -24,6 +27,12 @@ export default function Menu({ exitAction, shareAction, qrCodeAction }) {
   const toggleMenu = () => setOpenMenu(!openMenu);
   const closeMenu = () => setOpenMenu(false);
   const exit = () => {
+    if(Platform.OS === "web"){
+      alert("You are now exiting the room.");
+      setOpenMenu(false);
+      exitAction();
+      return 
+    }
     Alert.alert(
       "Exiting room.",
       "Are you sure you want to exit the room you're in?",
@@ -63,17 +72,20 @@ export default function Menu({ exitAction, shareAction, qrCodeAction }) {
             color={styles.red}
             closeMenu={closeMenu}
           />
-          <Button
-            icon={
-              <Image
-                source={require("../assets/icons/005-share.png")}
-                style={styles.icon}
-              />
-            }
-            action={share}
-            color={styles.blue}
-            closeMenu={closeMenu}
-          />
+          {
+            Platform.OS === "web" ? <></> :
+            <Button
+              icon={
+                <Image
+                  source={require("../assets/icons/005-share.png")}
+                  style={styles.icon}
+                />
+              }
+              action={share}
+              color={styles.blue}
+              closeMenu={closeMenu}
+            />
+          }
           <Button
             icon={
               <Image

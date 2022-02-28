@@ -42,7 +42,7 @@ export default function QRCodeReader({ exitReader, handleDeepLink }) {
   return (
     <View style={styles.container}>
       <Camera
-        style={StyleSheet.absoluteFillObject}
+        style={styles.camera}
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         ratio={"16:9"}
         barCodeScannerSettings={{
@@ -58,7 +58,6 @@ export default function QRCodeReader({ exitReader, handleDeepLink }) {
           style={styles.icon}
         />
       </TouchableOpacity>
-      <View style={styles.toolbar}></View>
     </View>
   );
 }
@@ -70,6 +69,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "flex-end",
     alignItems: "center",
+    minHeight: "100%",
   },
   icon: {
     height: 25,
@@ -84,8 +84,13 @@ const styles = StyleSheet.create({
     padding: 20,
     margin: 50,
     borderRadius: 50,
+    zIndex: 40
   },
   message: {
     padding: 40
+  },
+  camera: {
+    ...StyleSheet.absoluteFillObject,
+    height:"100%"
   }
 });

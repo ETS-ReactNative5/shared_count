@@ -87,11 +87,12 @@ export default function App() {
             styles.outside,
             styles.AndroidSafeArea,
         ]}>
+            {/* not sure if changing the title bar location will work normally on mobile */}
+            <TitleBar/>
             <View style={[
                 styles.container,
-                Platform.OS === "web" ? {maxWidth: 800} : {}
+                Platform.OS === "web" ? {maxWidth: 600} : {}
             ]}>
-                <TitleBar/>
                 {
                     !connected ?
                         <NotConnected/> :

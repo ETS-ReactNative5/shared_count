@@ -1,6 +1,8 @@
 # bugs notebook
 
-- lower case letters not valid for entering room
-8df8e0
-- room not dying properly
-- 
+## web bugs
+- title bar size not right  OK
+- alerts not working 
+- camera sizing not right
+- not deployed
+- menu not navigating

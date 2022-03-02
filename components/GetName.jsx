@@ -72,8 +72,13 @@ const styles = StyleSheet.create({
     minHeight: 200,
     backgroundColor: "white",
     borderRadius: 20,
-    shadowColor: "black",
     elevation: 30,
+    shadowColor: "black",
+    shadowOffset: {
+      height: 10,
+      width: 10,
+    },
+    shadowOpacity: 0.3
   },
   title: {
     paddingHorizontal: 30,

@@ -1,0 +1,29 @@
+{
+  "files": {
+    "app.js": "/shared_count/static/js/app.caad58b9.chunk.js",
+    "app.js.map": "/shared_count/static/js/app.caad58b9.chunk.js.map",
+    "runtime~app.js": "/shared_count/static/js/runtime~app.2388a2fd.js",
+    "runtime~app.js.map": "/shared_count/static/js/runtime~app.2388a2fd.js.map",
+    "static/js/2.daccc799.chunk.js": "/shared_count/static/js/2.daccc799.chunk.js",
+    "static/js/2.daccc799.chunk.js.map": "/shared_count/static/js/2.daccc799.chunk.js.map",
+    "favicon-16.png": "/shared_count/favicon-16.png",
+    "favicon-32.png": "/shared_count/favicon-32.png",
+    "favicon.ico": "/shared_count/favicon.ico",
+    "index.html": "/shared_count/index.html",
+    "manifest.json": "/shared_count/manifest.json",
+    "serve.json": "/shared_count/serve.json",
+    "static/js/2.daccc799.chunk.js.LICENSE.txt": "/shared_count/static/js/2.daccc799.chunk.js.LICENSE.txt",
+    "static/media/002-dots.png": "/shared_count/static/media/002-dots.f587c2b8.png",
+    "static/media/003-exit.png": "/shared_count/static/media/003-exit.cbb83064.png",
+    "static/media/005-share.png": "/shared_count/static/media/005-share.8a504b88.png",
+    "static/media/006-qr-code.png": "/shared_count/static/media/006-qr-code.0a151d81.png",
+    "static/media/close.png": "/shared_count/static/media/close.8687e1da.png",
+    "static/media/icon.png": "/shared_count/static/media/icon.a91382b1.png",
+    "static/media/logo_light.png": "/shared_count/static/media/logo_light.541f4524.png"
+  },
+  "entrypoints": [
+    "static/js/runtime~app.2388a2fd.js",
+    "static/js/2.daccc799.chunk.js",
+    "static/js/app.caad58b9.chunk.js"
+  ]
+}

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
+  Platform
 } from "react-native";
 
 import { useState } from "react";
@@ -26,21 +27,24 @@ export default function EnterRoomCode({
   setRoomId,
   setShowQrCodeReader,
 }) {
+
   const colors = config.colors;
   const [Id, setId] = useState("");
+  const dismissKeyboard = () => Platform.OS === "web" ? null : Keyboard.dismiss()
 
   const handleSubmit = () => {
     if (!verifyRoomId(Id)) {
       alert("Room name invalid.", "Please enter a valid room name.");
       return;
     }
-    Keyboard.dismiss()
+
+    dismissKeyboard()
     setRoomId(Id.toUpperCase());
     getName();
   };
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <TouchableWithoutFeedback onPress={dismissKeyboard}>
       <View style={styles.container}>
         <Text style={styles.text}>Enter room code:</Text>
         <View style={styles.searchSection}>
@@ -115,6 +119,7 @@ const styles = StyleSheet.create({
     height: 40,
     borderStyle: "solid",
     borderBottomWidth: 2,
+    paddingHorizontal: 10
   },
   button: {},
 });

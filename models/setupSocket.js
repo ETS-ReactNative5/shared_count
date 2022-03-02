@@ -12,18 +12,15 @@ const filterPlayers = (playerList) => {
 
 export default function setupSocket(wsUrl, username,setWebSocket, setCleanWsAction, setWsConnected, setCounter, setPlayers) {
     console.log("Setting up ws with url: " + wsUrl);
-    if (!wsUrl)
-        return
+    if (!wsUrl) return
 
     let webSocket = null
     let isForcedClosed = false
     let timeout = null
 
-    function connect() {
+    const connect = () => {
         console.log("Starting connection to WebSocket Server");
         console.log("Websocket link: " + wsUrl);
-        if (!wsUrl)
-            return
         webSocket = new WebSocket(wsUrl);
 
         setWebSocket(webSocket)
@@ -35,7 +32,7 @@ export default function setupSocket(wsUrl, username,setWebSocket, setCleanWsActi
         webSocket.onopen = onOpen
     }
 
-    function cleanWebSocket() {
+    const cleanWebSocket = () => {
         setWsConnected(false)
         isForcedClosed = true
         if (webSocket)
@@ -43,12 +40,12 @@ export default function setupSocket(wsUrl, username,setWebSocket, setCleanWsActi
         if (timeout) clearTimeout(timeout)
     }
 
-    function onOpen(e) {
+    const onOpen = (e) => {
         postName(webSocket, username)
         setWsConnected(true)
     }
 
-    function onMessage(e) {
+    const onMessage = (e) => {
         const data = JSON.parse(e.data);
         console.log(data)
         const event = data.event;
@@ -70,7 +67,7 @@ export default function setupSocket(wsUrl, username,setWebSocket, setCleanWsActi
         }
     }
 
-    function onClose(e) {
+    const onClose = (e) => {
         if (isForcedClosed) {
             console.log("Socket is closed.", e.reason);
             return
@@ -81,7 +78,7 @@ export default function setupSocket(wsUrl, username,setWebSocket, setCleanWsActi
         }, 1000);
     }
 
-    function onError(e) {
+    const onError = (e) => {
         console.error(
             "Socket encountered error: ",
             e.message,
@@ -90,6 +87,6 @@ export default function setupSocket(wsUrl, username,setWebSocket, setCleanWsActi
         webSocket.close();
     }
 
-    connect()
+    connect();
 
 }

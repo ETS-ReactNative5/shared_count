@@ -7,3 +7,4 @@
 - camera sizing not right
 - not deployed
 - menu not navigating OK
+- api headers missing CORS

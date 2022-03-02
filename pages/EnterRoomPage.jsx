@@ -26,9 +26,9 @@ export default function EnterRoomPage(
     }) {
     const [showQrCodeReader, setShowQrCodeReader] = useState(false);
     const [showPrompt, setShowPrompt] = useState(false);
+    const [enterSuccess, setEnterSuccess] = useState(null);
     const closePrompt = () => setShowPrompt(false);
     const openPrompt = () => setShowPrompt(true);
-
 
     useEffect(() => {
         if (roomFromUrl) {
@@ -40,14 +40,16 @@ export default function EnterRoomPage(
 
     const createRoom = () => createRoomAPI(config.apiEndpoint, setRoomId, setInitialCount, setWsUrl);
     const enter = () => {
-        goToRoomPage();
         enterRoom(
             config.apiEndpoint,
             setWsUrl,
             roomId,
-            setInitialCount
+            setInitialCount,
+            setEnterSuccess
         );
     };
+
+    useEffect(() => enterSuccess ? goToRoomPage() : null, [enterSuccess] )
 
     return (
         <View style={styles.page}>
